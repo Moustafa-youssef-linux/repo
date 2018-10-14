@@ -1,0 +1,10 @@
+- hosts: localhost
+  remote_user: root
+  tasks:
+  - name: Creates directory
+    file:
+      path: /root/ansible_playbooks/test_2
+      state: directory
+      owner: root
+      group: root
+      mode: 0775
