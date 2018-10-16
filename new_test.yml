@@ -3,7 +3,7 @@
   tasks:
   - name: Creates directory
     file:
-      path: ~/play_ground_11
+      path: /root/ansible_playbooks/
       state: directory
       owner: root
       group: root
