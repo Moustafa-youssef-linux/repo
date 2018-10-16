@@ -1,0 +1,12 @@
+- hosts: "{{ variable_host | default('myserver') }}"
+  remote_user: root
+  vars:
+    dir: "{{ var2 }}"
+  tasks:
+  - name: Creates directory
+    file:
+      path: "{{ dir }}"
+      state: directory
+      owner: root
+      group: root
+      mode: 0775
