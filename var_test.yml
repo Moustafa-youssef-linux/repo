@@ -1,11 +1,11 @@
 - hosts: localhost
   remote_user: root
   vars:
-    directory_name: "{{ var1 }}"
+    dir: "{{ var1 }}"
   tasks:
   - name: Creates directory
     file:
-      path: "{{ directory_name }}"
+      path: "{{ dir }}"
       state: directory
       owner: root
       group: root
