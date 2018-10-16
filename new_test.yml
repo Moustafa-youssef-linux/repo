@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: cfme.local
   remote_user: root
   tasks:
   - name: Creates directory
