@@ -1,4 +1,4 @@
-- host: localhost
+- hosts: localhost
   remote_user: root
   tasks:
   - name: Creates directory
