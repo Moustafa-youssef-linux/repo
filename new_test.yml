@@ -3,7 +3,7 @@
   tasks:
   - name: Creates directory
     file:
-      path: /tmp/new_dir
+      path: play_ground_11
       state: directory
       owner: root
       group: root
