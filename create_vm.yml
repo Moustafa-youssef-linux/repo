@@ -11,13 +11,12 @@
     vcenter_cluster: "{{ var4 }}"
     vcenter_dc: "{{ var5 }}"
     vm_name: "{{ var6 }}"
-    vcenter_template: "{{ var7 }}"
-    vcenter_datastore: "{{ var8 }}"
-    vm_network: "{{ var9 }}"
-    vm_ip: "{{ var10 }}"
-    vm_netmask: "{{ var11 }}"
-    vm_gw: "{{ var12 }}"
-    hostips_hostipmacs: "{{ var13 }}"
+    vcenter_template: Linux_temp
+    vcenter_datastore: MCIT_DS_17
+    vm_network: "VM Network"
+    vm_ip: "1.1.1.2"
+    vm_netmask: "255.255.255.0"
+    vm_gw: "1.1.1.1"
   tasks:
     - name: create VM
       vmware_guest:
@@ -27,7 +26,7 @@
         validate_certs: False
         cluster: "{{ vcenter_cluster }}"
         datacenter: "{{ vcenter_dc }}"
-        folder: /myfolder_1
+        folder: /cf
         name: "{{ vm_name  }}"
         state: poweredon
         template: "{{ vcenter_template }}"
