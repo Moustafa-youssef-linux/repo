@@ -1,28 +1,24 @@
 - name: convert hosts from csv
   hosts: localhost
   connection: local
+  remote_user: root
   gather_facts: false
   become: false
   vars:
-    vcenter_datastore: MCIT_DS_17
-    vcenter_template: Linux_temp
-    vm_name: testvm00
-    vm_network: "VM Network"
-    vm_ip: "1.1.1.2"
-    vm_netmask: "255.255.255.0"
-    vm_gw: "1.1.1.1"
+    vcenter_ip: "{{ var1 }}"
+    vcenter_username: "{{ var2 }}"
+    vcenter_password: " {{ var3 }}"
+    vcenter_cluster: "{{ var4 }}"
+    vcenter_dc: "{{ var5 }}"
+    vm_name: "{{ var6 }}"
+    vcenter_template: "{{ var7 }}"
+    vcenter_datastore: "{{ var8 }}"
+    vm_network: "{{ var9 }}"
+    vm_ip: "{{ var10 }}"
+    vm_netmask: "{{ var11 }}"
+    vm_gw: "{{ var12 }}"
+    hostips_hostipmacs: "{{ var13 }}"
   tasks:
-    - name: check file
-      stat: 
-        path: ../iterate_hosts.yml
-      register: stat_result
-
-    - name: load CSV To YAML
-      include_vars:
-        file: ../iterate_hosts.yml
-        name: hostips
-      when: stat_result.stat.exists == true 
-      
     - name: create VM
       vmware_guest:
         hostname: "{{ vcenter_ip }}"
@@ -31,8 +27,8 @@
         validate_certs: False
         cluster: "{{ vcenter_cluster }}"
         datacenter: "{{ vcenter_dc }}"
-        folder: /cf
-        name: "{{ item.host }}"
+        folder: /myfolder_1
+        name: "{{ vm_name  }}"
         state: poweredon
         template: "{{ vcenter_template }}"
         disk:
@@ -43,11 +39,9 @@
           memory_mb: 512
           num_cpus: 1
         networks:
-        - name: "{{ vm_network }}" 
+        - name: "{{ vm_network }}"
           type: "static"
-          ip: "{{ item.ip }}"
-          netmask: "{{ item.netmask }}"
-          gateway: "{{ item.gw }}"
+          ip: "{{ vm_ip }}"
+          netmask: "{{ vm_netmask }}"
+          gateway: "{{ vm_gw }}"
         wait_for_ip_address: no
-      loop: "{{ hostips.hostipmacs }}"
- 
