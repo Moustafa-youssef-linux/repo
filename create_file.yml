@@ -1,0 +1,8 @@
+- hosts: all
+  vars:
+   dir: "{{ var1 }}"
+  tasks:
+  - name: Ansible create file if it doesn't exist example
+    file:
+      path: "{{ dir }}/file_1"
+      state: touch
