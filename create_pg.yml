@@ -20,7 +20,7 @@
         password: "{{ vcenter_password }}"
         validate_certs: False
         portgroup_name: "{{ vlan_name }}"
-        switch_name: DSwitch_1
+        switch_name: vDS_NEW
         vlan_id: "{{ vlan_id }}"
         num_ports: 10
         portgroup_type: earlyBinding
