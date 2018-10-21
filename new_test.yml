@@ -1,10 +1,8 @@
 - hosts: localhost
-  remote_user: root
+  vars:
+   dir: "{{ var1 }}"
   tasks:
-  - name: Creates directory
+  - name: Ansible create file if it doesn't exist example
     file:
-      path: /root/ansible_playbooks/new_dir
-      state: directory
-      owner: root
-      group: root
-      mode: 0775
+      path: "{{ dir }}/file_1"
+      state: touch
