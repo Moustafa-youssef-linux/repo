@@ -14,9 +14,9 @@
     vcenter_template: Linux_temp
     vcenter_datastore: MCIT_DS_17
     vm_network: "VM Network"
-    vm_ip: "1.1.1.2"
-    vm_netmask: "255.255.255.0"
-    vm_gw: "1.1.1.1"
+    vm_ip: "{{ var7 }}"
+    vm_netmask: "{{ var8 }}"
+    vm_gw: "{{ var9 }}"
   tasks:
     - name: create VM
       vmware_guest:
