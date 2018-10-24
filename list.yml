@@ -9,7 +9,4 @@
       state: touch
     loop: "{{ mylist|default([]) }}"
     when: item is defined
-  - name: create file
-    file:
-      path: "/root/ansible_playbooks/{{ ch }}"
-      state: touch
+  
