@@ -9,7 +9,7 @@
     vcenter_username: "{{ var2 }}"
     vcenter_password: " {{ var3 }}"
     vcenter_cluster: "{{ var4 }}"
-    vcenter_dc: "{{ var5 }} "
+    vcenter_dc: "{{ var5 }}"
     vcenter_template: Linux_temp
     vcenter_datastore: MCIT_DS_17
     vm_network: "VM Network"
@@ -26,7 +26,7 @@
         cluster: "{{ vcenter_cluster }}"
         datacenter: "{{ vcenter_dc }}"
         folder: /cf
-        name: "{{ item[0]  }}"
+        name: "{{ item[0] }}"
         state: poweredon
         template: "{{ vcenter_template }}"
         disk:
@@ -43,5 +43,5 @@
           netmask: "{{ vm_netmask }}"
           gateway: "{{ vm_gw }}"
         wait_for_ip_address: no
-        loop: "{{ mylist }}"
-        when: item is defined
+      loop: "{{ mylist }}"
+      when: item is defined
