@@ -43,5 +43,5 @@
           netmask: "{{ vm_netmask }}"
           gateway: "{{ vm_gw }}"
         wait_for_ip_address: no
-      loop: "{{ mylist }}"
+      loop: "{{ mylist|default([]) }}"
       when: item is defined
