@@ -1,6 +1,7 @@
 - hosts: localhost
   vars:
     mylist: "{{ var1 }}"
+    ch: "{{ var2 }}"
   tasks:
   - name: create file
     file:
@@ -8,3 +9,7 @@
       state: touch
     loop: "{{ mylist|default([]) }}"
     when: item is defined
+  - name: create file
+    file:
+      path: "/root/ansible_playbooks/{{ ch }}"
+      state: touch
