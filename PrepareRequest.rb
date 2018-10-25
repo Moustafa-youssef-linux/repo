@@ -52,10 +52,12 @@ while c >= 1 && c <= max_num
          arr_ip = vm_ip.split('.')
          last_oct = arr_ip[3]
          last_oct = last_oct.to_i
-         last_oct = last_oct + 1
+         l = c - 1
+         last_oct = last_oct + l
          arr_ip[3] = last_oct.to_s
-         vm_ip = arr_ip.join('.')
-         arr_host << vm_ip
+         new_ip = []
+         new_ip = arr_ip.join('.')
+         arr_host << new_ip
          whole_arr << arr_host
               
 
@@ -65,7 +67,19 @@ while c >= 1 && c <= max_num
          prefix = c
          prefix.to_s
          derived_name = "#{vm_name}#{vm_app}#{prefix}"
-         arr_name << derived_name
+         arr_host = []
+         arr_host << derived_name
+         arr_ip = vm_ip.split('.')
+         last_oct = arr_ip[3]
+         last_oct = last_oct.to_i
+         l = c - 1
+         last_oct = last_oct + l
+         arr_ip[3] = last_oct.to_s
+         new_ip = []
+         new_ip = arr_ip.join('.')
+         arr_host << new_ip
+         whole_arr << arr_host 
+         
   end
  end
 end
