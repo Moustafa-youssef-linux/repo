@@ -12,10 +12,13 @@
     vcenter_dc: "{{ var5 }}"
     vcenter_template: Linux_temp
     vcenter_datastore: MCIT_DS_17
-    vm_network: "VM Network"
     vm_netmask: "{{ var6 }}"
     vm_gw: "{{ var7 }}"
     mylist: "{{ var8 }}"
+    mem: "{{ var9 }}"
+    cpu: "{{ var10 }}"
+    storage: "{{ var11 }}"
+    vm_network: "{{ var12 }}"
   tasks:
     - name: create VM
       vmware_guest:
@@ -30,12 +33,12 @@
         state: poweredon
         template: "{{ vcenter_template }}"
         disk:
-        - size_gb: "{{ item[4] }}"
+        - size_gb: "{{ storage }}"
           type: thin
           datastore: "{{ vcenter_datastore }}"
         hardware:
-          memory_mb: "{{ item[2] }}"
-          num_cpus: "{{ item[3] }}"
+          memory_mb: "{{ mem }}"
+          num_cpus: "{{ cpu }}"
         networks:
         - name: "{{ vm_network }}"
           type: "static"
