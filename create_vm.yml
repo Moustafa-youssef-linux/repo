@@ -34,6 +34,9 @@
         - size_gb: 55
           type: thin
           datastore: "{{ vcenter_datastore }}"
+        - size_gb: 66
+          type: thin
+          datastore: "{{ vcenter_datastore }}"
         hardware:
           memory_mb: 512
           num_cpus: 1
