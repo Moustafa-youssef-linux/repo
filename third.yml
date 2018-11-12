@@ -1,0 +1,53 @@
+- name: convert hosts from csv
+  hosts: localhost
+  connection: local
+  remote_user: root
+  gather_facts: false
+  become: false
+  vars:
+    vcenter_ip: "{{ var1 }}"
+    vcenter_username: "{{ var2 }}"
+    vcenter_password: " {{ var3 }}"
+    vcenter_cluster: "{{ var4 }}"
+    vcenter_dc: "{{ var5 }}"
+    vcenter_template: Linux_temp
+    vcenter_datastore: MCIT_DS_17
+    vm_netmask: "{{ var6 }}"
+    vm_gw: "{{ var7 }}"
+    mylist: "{{ var8 }}"
+    mem: "{{ var9 }}"
+    cpu: "{{ var10 }}"
+    storage: "{{ var11 }}"
+    vm_network: "{{ var12 }}"
+  tasks:
+    - name: create VM
+      vmware_guest:
+        hostname: "{{ vcenter_ip }}"
+        username: "{{ vcenter_username }}"
+        password: "{{ vcenter_password }}"
+        validate_certs: False
+        cluster: "{{ vcenter_cluster }}"
+        datacenter: "{{ vcenter_dc }}"
+        folder: /cf
+        name: "{{ item[0] }}"
+        state: poweredon
+        template: "{{ vcenter_template }}"
+        disk:
+        - size_gb: 40
+          type: thin
+          datastore: "{{ vcenter_datastore }}"
+        - size_gb: "{{ storage }}"
+          type: thin
+          datastore: "{{ vcenter_datastore }}"
+        hardware:
+          memory_mb: "{{ mem }}"
+          num_cpus: "{{ cpu }}"
+        networks:
+        - name: "{{ vm_network }}"
+          type: "static"
+          ip: "{{ item[1] }}"
+          netmask: "{{ vm_netmask }}"
+          gateway: "{{ vm_gw }}"
+        wait_for_ip_address: no
+      loop: "{{ mylist|default([]) }}"
+      when: item is defined
