@@ -14,10 +14,10 @@
     vcenter_datastore: MCIT_DS_17
     vm_netmask: "{{ var6 }}"
     vm_gw: "{{ var7 }}"
-    mylist: "{{ var8 }}"
-    mem: "{{ var9 }}"
-    cpu: "{{ var10 }}"
-    storage: "{{ var11 }}"
+    mylist_3: "{{ var8 }}"
+    mem_3: "{{ var9 }}"
+    cpu_3: "{{ var10 }}"
+    storage_3: "{{ var11 }}"
     vm_network: "{{ var12 }}"
   tasks:
     - name: create VM
