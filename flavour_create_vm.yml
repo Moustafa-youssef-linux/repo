@@ -33,7 +33,7 @@
         state: poweredon
         template: "{{ vcenter_template }}"
         disk:
-        - size_gb: 40
+        - size_gb: 52
           type: thin
           datastore: "{{ vcenter_datastore }}"
         - size_gb: "{{ storage }}"
